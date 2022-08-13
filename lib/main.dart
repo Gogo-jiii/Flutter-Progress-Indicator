@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     )..addListener(() {
         setState(() {});
       });
-    controller.repeat(max: 3.0);
+    controller.repeat(reverse: true);
     super.initState();
   }
 
@@ -56,14 +56,23 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: CircularProgressIndicator(
-          value: controller.value,
-          backgroundColor: Colors.green,
-          color: Colors.red,
-          strokeWidth: 3,
-          semanticsLabel: "Circular Progress Indicator",
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircularProgressIndicator(
+            value: controller.value,
+            strokeWidth: 5,
+            semanticsLabel: "Circular Progress Indicator",
+          ),
+          const SizedBox(
+            width: double.infinity,
+            height: 50,
+          ),
+          LinearProgressIndicator(
+            value: controller.value,
+            semanticsLabel: "Linear Progress Indicator",
+          ),
+        ],
       ),
     );
   }
